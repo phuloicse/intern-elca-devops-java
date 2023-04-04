@@ -39,7 +39,7 @@ timestamps {
                   ])
                   openshift.apply(
                     openshift.process(
-                      readFile('./pet/build.yml')
+                      readFile('./okd/build.yml')
                     )
                   )
                   elcaOKDLib.buildAndWaitForCompletion('petclinic', '--from-dir ./docker')
@@ -48,7 +48,7 @@ timestamps {
                 stage('Deploy pet clinic Web') {
                   openshift.apply(
                     openshift.process(
-                      readFile('./pet/deploy.yml'),
+                      readFile('./okd/deploy.yml'),
                       '-p', "CONTAINER_ID=${new Date().format("yyyyMMddHHmmssS", TimeZone.getTimeZone('UTC'))}",
                     )
                   )
